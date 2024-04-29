@@ -1,17 +1,14 @@
 # lightweight python
-FROM tensorflow/tensorflow:latest-gpu
-FROM python:3.9
-RUN apt-get update
+FROM python:3.9-slim
 
-# Copy local code to the container image.
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
+WORKDIR /app
 
-RUN ls -la $APP_HOME/
-RUN apt-get update
-
+COPY requirements.txt .
 # Install dependencies
 RUN pip install -r requirements.txt
 
-RUN python -m spacy download en_core_web_sm
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uvicorn" , "app:app" , "-host" , "0.0.0.0" , "--port" , "8000"]
