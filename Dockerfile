@@ -1,15 +1,17 @@
-# syntax=docker/dockerfile:1
+# lightweight python
+FROM tensorflow/tensorflow:latest-gpu
+FROM python:3.9
+RUN apt-get update
 
-FROM python:3.11
+# Copy local code to the container image.
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
 
-WORKDIR /code
+RUN ls -la $APP_HOME/
+RUN apt-get update
 
-COPY requirements.txt .
+# Install dependencies
+RUN pip install -r requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-
-COPY . .
-
-EXPOSE 3100
-
-CMD ["gunicorn", "main:app"]
+RUN python -m spacy download en_core_web_sm
