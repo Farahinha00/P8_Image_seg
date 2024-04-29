@@ -1,17 +1,8 @@
 # lightweight python
 FROM tensorflow/tensorflow:latest-gpu
 FROM python:3.9
-RUN apt-get update
-
-# Copy local code to the container image.
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
-
-RUN ls -la $APP_HOME/
-RUN apt-get update
-
-# Install dependencies
+WORKDIR /fastapi
+COPY requirements.txt /fastapi
 RUN pip install -r requirements.txt
-
-RUN python -m spacy download en_core_web_sm
+COPY ./app /fastapi/app
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "80"]
