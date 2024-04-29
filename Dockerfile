@@ -1,3 +1,4 @@
+# lightweight python
 FROM tensorflow/tensorflow:latest-gpu
 FROM python:3.9
 RUN apt-get update
@@ -12,3 +13,5 @@ RUN apt-get update
 
 # Install dependencies
 RUN pip install -r requirements.txt
+
+RUN python -m spacy download en_core_web_sm
