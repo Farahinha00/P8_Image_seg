@@ -8,8 +8,8 @@ app = FastAPI()
 
 model = None
 # Define the URL and the filename
-url1 = "https://p8och5.file.core.windows.net/modelvggunet"
-filename1 = "modelvggunet"
+url1 = "https://p8och5.blob.core.windows.net/modelevgg/model_vgg_unet.h5"
+filename1 = "modelvggunet.h5"
 # Download the file
 urlretrieve(url1, filename1)
 
@@ -23,7 +23,7 @@ def download_file(url, filename):
 def init():
     global model
 
-    download_file("https://p8och5.file.core.windows.net/modelvggunet", filename1)
+    download_file("https://p8och5.blob.core.windows.net/modelevgg/model_vgg_unet.h5", filename1)
 
     model = tf.keras.models.load_model(filename1)
 
@@ -31,6 +31,8 @@ def init():
 @app.on_event("startup")
 async def startup_event():
     init()
+
+    
 
 @app.get("/")
 async def root():
