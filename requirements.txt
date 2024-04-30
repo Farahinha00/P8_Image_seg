@@ -1,8 +1,6 @@
 numpy
 tqdm
-tensorflow>=2.2
 opencv-python
-imageio>=2.5.0
 fastapi
 uvicorn
 gunicorn
