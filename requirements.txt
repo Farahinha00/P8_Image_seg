@@ -4,4 +4,8 @@ opencv-python
 fastapi
 uvicorn
 gunicorn
--e git+https://github.com/Farahinha00/image-segmentation-keras.git@Farahinha00-patch-1#egg=keras-segmentation
+h5py
+keras>=2.3.0
+tensorflow>=2.2
+imageio>=2.5.0
+imgaug>=0.4.0
