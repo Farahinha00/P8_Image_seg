@@ -1,6 +1,5 @@
 numpy
 tqdm
-opencv-python
 streamlit
 Pillow
 ipython
